@@ -20,9 +20,10 @@ public class Pizza {
     
     private final double mNormal=9.00;
     private final double mIntegral=9.5;
-    private final double pBasica=3;
-    private final double pCuatroQuesos=5;
-    private final double pBarbacoa=7;
+    private final double tBasica=3;
+    private final double tCuatroQuesos=5;
+    private final double tBarbacoa=7;
+    private final double tMexicana=8.5;
     private final double iJamon=0.5;
     private final double iQueso=0.75;
     private final double iTomate=1.5;
@@ -73,10 +74,22 @@ public class Pizza {
 //- método Double calcularPrecio() que en función de los valores de los atributos calcule y
 //devuelva el precio final de la pizza.
     
-    public double calcularPrecio(masa, tipo, tamanio, listaIngredientes){
+    public double calcularPrecio(String masa, String tipo, String listaIngredientes, String tamanio){
         double precio=0;
-                
-        
+          if (masa.equalsIgnoreCase("normal")){
+              precio=mNormal;
+          } else precio = mIntegral;
+          
+          if (tipo.equalsIgnoreCase("barbacoa")){
+              precio=tBarbacoa;
+          } else if (tipo.equalsIgnoreCase("Cuatro Quesos")){
+              precio = tCuatroQuesos;
+          } else if (tipo.equalsIgnoreCase("Mexicana")){
+              precio= tMexicana;
+          } else precio = tBasica;
+          
+          if (listaIngredientes.equalsIgnoreCase(tamanio))
+          
         return precio;
     }
     
