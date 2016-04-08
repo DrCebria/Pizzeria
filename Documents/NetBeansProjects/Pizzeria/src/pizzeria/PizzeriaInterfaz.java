@@ -371,7 +371,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     
     public double CalculaPrecioIngredientesExtra(){
         double precio=0;
-        
+        jListaIngredientes.getSelectedValuesList();
         return precio;
     }
     
@@ -381,7 +381,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
             return precio=15/100;
         } else if(jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")){
             return precio=30/100;
-        } 
+        } else
         
         return precio=1;
     }
