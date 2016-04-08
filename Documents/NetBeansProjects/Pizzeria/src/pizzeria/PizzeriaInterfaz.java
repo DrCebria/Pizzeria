@@ -47,16 +47,18 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         precioMasa = new javax.swing.JLabel();
-        precioPizza = new javax.swing.JLabel();
+        precioTipoPizza = new javax.swing.JLabel();
         precioIngredienteExtra = new javax.swing.JLabel();
         precioTamanio = new javax.swing.JLabel();
         precioTotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        BotonCalcular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         buttonGroup1.add(rMasaNormal);
         rMasaNormal.setText("Normal");
@@ -102,7 +104,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
         Masa.setText("Masa");
 
-        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         cTipoPizza.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Básica", "Cuatro Quesos", "Barbacoa", "Mexicana", " " }));
         cTipoPizza.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +132,8 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
         jLabel1.setText("Tipo Pizza");
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jListaIngredientes.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "SIN INGREDIENTES", "jamón", "queso", "tomate", "cebolla", "olivas" };
             public int getSize() { return strings.length; }
@@ -142,17 +146,19 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jSpinnertam.setModel(new javax.swing.SpinnerListModel(new String[] {"Peque?a", "Mediana", "Familiar"}));
 
@@ -173,6 +179,8 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(0));
+
         pMASA.setText("MASA");
 
         jLabel3.setText("TIPO PIZZA");
@@ -185,7 +193,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
         precioMasa.setText("0");
 
-        precioPizza.setText("0");
+        precioTipoPizza.setText("0");
 
         precioIngredienteExtra.setText("0");
 
@@ -207,14 +215,14 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(precioMasa)
-                    .addComponent(precioPizza)
-                    .addComponent(precioIngredienteExtra)
-                    .addComponent(precioTamanio)
-                    .addComponent(precioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(precioMasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(precioTamanio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(precioTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(precioTipoPizza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(precioIngredienteExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(61, 61, 61))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +234,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(precioPizza))
+                    .addComponent(precioTipoPizza))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -235,7 +243,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(precioTamanio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(precioTotal))
@@ -246,30 +254,42 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
         jLabel12.setText("Tama?o");
 
+        BotonCalcular.setText("Precio PIZZA");
+        BotonCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCalcularActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Masa))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Masa))
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(BotonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -285,12 +305,14 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BotonCalcular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -302,7 +324,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
     private void rMasaNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaNormalActionPerformed
         // TODO add your handling code here:
-        precioMasa.setText("9,00");
+
     }//GEN-LAST:event_rMasaNormalActionPerformed
 
     private void rMasaNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rMasaNormalMouseClicked
@@ -310,12 +332,68 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_rMasaNormalMouseClicked
 
     private void rMasaIntegralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaIntegralActionPerformed
-        precioMasa.setText("9,50");
+
     }//GEN-LAST:event_rMasaIntegralActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void BotonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCalcularActionPerformed
+        precioTotal.setText(Double.toString(CalculaPrecioTotal()));
+
+    }//GEN-LAST:event_BotonCalcularActionPerformed
+    public double CalculaPrecioMasa(){
+        double precio=0;
+        if (rMasaIntegral.isSelected()) {
+            precioMasa.setText("9.50€");
+            precio = 9.5;
+        } else {
+            precioMasa.setText("9.00€");
+            precio = 9;
+        }
+        return precio;
+    }
+    
+    public double CalculaPrecioTipoPizza(){
+        double precio=0;
+         if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
+            precio = precio + 5;
+            precioTipoPizza.setText("5,00");
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
+            precio = precio +7;
+            precioTipoPizza.setText("7,00");
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
+            precio = precio + 8.5;
+            precioTipoPizza.setText("8,50");
+        } else {
+            precio = precio + 3;
+            precioTipoPizza.setText("3,00");
+        }
+        return precio;
+    }
+    
+    public double CalculaPrecioIngredientesExtra(){
+        double precio=0;
+        
+        return precio;
+    }
+    
+    public double CalculaPrecioTamanio(){
+        double precio=0;
+        if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")){
+            return precio=15/100;
+        } else if(jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")){
+            return precio=30/100;
+        }
+        
+        return precio;
+    }
+    
+    public double CalculaPrecioTotal() {
+        double precio = 0;      
+        
+        precio=CalculaPrecioMasa()+CalculaPrecioTipoPizza();
+        
+        return precio;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -350,6 +428,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCalcular;
     private javax.swing.JLabel Masa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cTipoPizza;
@@ -371,8 +450,8 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel pMASA;
     private javax.swing.JLabel precioIngredienteExtra;
     private javax.swing.JLabel precioMasa;
-    private javax.swing.JLabel precioPizza;
     private javax.swing.JLabel precioTamanio;
+    private javax.swing.JLabel precioTipoPizza;
     private javax.swing.JLabel precioTotal;
     private javax.swing.JRadioButton rMasaIntegral;
     private javax.swing.JRadioButton rMasaNormal;
