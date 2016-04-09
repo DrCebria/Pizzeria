@@ -374,6 +374,9 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     }
 
     public double CalculaPrecioIngredientesExtra() {
+        //Se necesita dar un valor a cada uno de los atributos. Se crea la lista y luego se compara con lo que se ha 
+        //seleccionado. 
+        
         double precio = 0;        
         for (Iterator it = jListaIngredientes.getSelectedValuesList().iterator(); it.hasNext();) {
 

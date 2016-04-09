@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
 Crea una clase Pizza con:
 - atributos: masa, tipo, tama?o y lista de ingredientes.
@@ -74,7 +77,7 @@ public class Pizza {
 //- método Double calcularPrecio() que en función de los valores de los atributos calcule y
 //devuelva el precio final de la pizza.
     
-    public double calcularPrecio(String masa, String tipo, String listaIngredientes, String tamanio){
+    public double calcularPrecio(String masa, String tipo, ArrayList listaIngredientes, String tamanio){
         double precio=0;
           if (masa.equalsIgnoreCase("normal")){
               precio=mNormal;
@@ -88,9 +91,22 @@ public class Pizza {
               precio= tMexicana;
           } else precio = tBasica;
           
-          if (listaIngredientes.equalsIgnoreCase(tamanio))
-          
-        return precio;
+          if (listaIngredientes.equalsIgnoreCase("Tomate")){
+              precio=precio + iTomate;
+          } else if (listaIngredientes.equalsIgnoreCase("Queso")){
+              precio = precio + iQueso;
+          } else if (listaIngredientes.equalsIgnoreCase("Cebolla")){ 
+              precio = precio + iCebolla;
+          }    else if (listaIngredientes.equalsIgnoreCase("Olivas")){
+              precio = precio +iOlivas;
+          } else if (listaIngredientes.equalsIgnoreCase("Tomate")){
+              precio = precio + iJamon;
+          }
+          else {
+              return precio= precio+0;
+          }
+              
+          return precio;
     }
     
 }
