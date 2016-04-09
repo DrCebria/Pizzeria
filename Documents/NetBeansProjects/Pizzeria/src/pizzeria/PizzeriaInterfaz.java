@@ -388,9 +388,8 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     
     public double CalculaPrecioTotal() {
         double precio = 0;      
-        
         precio=CalculaPrecioMasa()+CalculaPrecioTipoPizza();
-        
+        precio=precio+(precio*CalculaPrecioTamanio());
         return precio;
     }
 
