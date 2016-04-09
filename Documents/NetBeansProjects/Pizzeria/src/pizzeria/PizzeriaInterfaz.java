@@ -5,6 +5,10 @@
  */
 package pizzeria;
 
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.Iterator;
+
 /**
  *
  * @author daw1
@@ -106,7 +110,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cTipoPizza.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Básica", "Cuatro Quesos", "Barbacoa", "Mexicana", " " }));
+        cTipoPizza.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Básica", "Cuatro Quesos", "Barbacoa", "Mexicana" }));
         cTipoPizza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cTipoPizzaActionPerformed(evt);
@@ -160,7 +164,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jSpinnertam.setModel(new javax.swing.SpinnerListModel(new String[] {"Peque?a", "Mediana", "Familiar"}));
+        jSpinnertam.setModel(new javax.swing.SpinnerListModel(new String[] {"Pequena", "Mediana", "Familiar"}));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -336,11 +340,11 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_rMasaIntegralActionPerformed
 
     private void BotonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCalcularActionPerformed
-        precioTotal.setText(Double.toString(CalculaPrecioTotal()));
+        precioTotal.setText(CalculaPrecioTotal());
 
     }//GEN-LAST:event_BotonCalcularActionPerformed
-    public double CalculaPrecioMasa(){
-        double precio=0;
+    public double CalculaPrecioMasa() {
+        double precio = 0;
         if (rMasaIntegral.isSelected()) {
             precioMasa.setText("9.50€");
             precio = 9.5;
@@ -350,47 +354,53 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         }
         return precio;
     }
-    
-    public double CalculaPrecioTipoPizza(){
-        double precio=0;
-         if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
+
+    public double CalculaPrecioTipoPizza() {
+        double precio = 0;
+        if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
             precio = precio + 5;
-            precioTipoPizza.setText("5,00");
+            precioTipoPizza.setText("5.00€");
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
-            precio = precio +7;
-            precioTipoPizza.setText("7,00");
+            precio = precio + 7;
+            precioTipoPizza.setText("7.00€");
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
             precio = precio + 8.5;
-            precioTipoPizza.setText("8,50");
+            precioTipoPizza.setText("8.50€");
         } else {
             precio = precio + 3;
-            precioTipoPizza.setText("3,00");
+            precioTipoPizza.setText("3.00€");
         }
         return precio;
     }
-    
-    public double CalculaPrecioIngredientesExtra(){
-        double precio=0;
-        jListaIngredientes.getSelectedValuesList();
+
+    public double CalculaPrecioIngredientesExtra() {
+        double precio = 0;        
+        for (Iterator it = jListaIngredientes.getSelectedValuesList().iterator(); it.hasNext();) {
+
+            if (!it.hasNext()) {
+              
+                
+                
+            }
+        }
         return precio;
     }
-    
-    public double CalculaPrecioTamanio(){
-        double precio=0;
-        if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")){
-            return precio=15/100;
-        } else if(jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")){
-            return precio=30/100;
-        } else
-        
-        return precio=1;
+
+    public double CalculaPrecioTamanio(Double precio) {
+        if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
+            return precio = precio + (precio * 15 / 100);
+        } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
+            return precio = precio + (precio * 30 / 100);
+        } else {
+            return precio;
+        }
     }
-    
-    public double CalculaPrecioTotal() {
-        double precio = 0;      
-        precio=CalculaPrecioMasa()+CalculaPrecioTipoPizza();
-        precio=precio+(precio*CalculaPrecioTamanio());
-        return precio;
+
+    public String CalculaPrecioTotal() {
+        double precio;
+        precio = CalculaPrecioMasa() + CalculaPrecioTipoPizza();
+        precio = CalculaPrecioTamanio(precio);
+        return Double.toString(precio).concat("€");
     }
 
     public static void main(String args[]) {
