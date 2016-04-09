@@ -8,6 +8,7 @@ package pizzeria;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -46,10 +47,10 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         jSpinnertam = new javax.swing.JSpinner();
         jPanel5 = new javax.swing.JPanel();
         pMASA = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        pTIPOPIZZA = new javax.swing.JLabel();
+        pINGREDIENTESEXTRA = new javax.swing.JLabel();
+        pTAMANO = new javax.swing.JLabel();
+        pTOTAL = new javax.swing.JLabel();
         precioMasa = new javax.swing.JLabel();
         precioTipoPizza = new javax.swing.JLabel();
         precioIngredienteExtra = new javax.swing.JLabel();
@@ -121,15 +122,15 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cTipoPizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addComponent(cTipoPizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -139,7 +140,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jListaIngredientes.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "SIN INGREDIENTES", "jamón", "queso", "tomate", "cebolla", "olivas" };
+            String[] strings = { "NINGUNO", "jamón", "queso", "tomate", "cebolla", "olivas" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -180,20 +181,20 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSpinnertam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         pMASA.setText("MASA");
 
-        jLabel3.setText("TIPO PIZZA");
+        pTIPOPIZZA.setText("TIPO PIZZA");
 
-        jLabel4.setText("INGREDIENTES EXTRA");
+        pINGREDIENTESEXTRA.setText("INGREDIENTES EXTRA");
 
-        jLabel5.setText("TAMA?O");
+        pTAMANO.setText("TAMA?O");
 
-        jLabel6.setText("TOTAL");
+        pTOTAL.setText("TOTAL");
 
         precioMasa.setText("0");
 
@@ -215,10 +216,10 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                     .addComponent(pMASA)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel6))
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                        .addComponent(pTOTAL))
+                    .addComponent(pTIPOPIZZA)
+                    .addComponent(pINGREDIENTESEXTRA)
+                    .addComponent(pTAMANO))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(precioMasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -237,19 +238,19 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                     .addComponent(precioMasa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(pTIPOPIZZA)
                     .addComponent(precioTipoPizza))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(pINGREDIENTESEXTRA)
                     .addComponent(precioIngredienteExtra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(pTAMANO)
                     .addComponent(precioTamanio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(pTOTAL)
                     .addComponent(precioTotal))
                 .addContainerGap())
         );
@@ -289,10 +290,10 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
+                        .addGap(198, 198, 198)
                         .addComponent(BotonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -307,14 +308,14 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addComponent(BotonCalcular)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -374,34 +375,52 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     }
 
     public double CalculaPrecioIngredientesExtra() {
-        //Se necesita dar un valor a cada uno de los atributos. Se crea la lista y luego se compara con lo que se ha 
-        //seleccionado. 
-        
-        double precio = 0;        
-        for (Iterator it = jListaIngredientes.getSelectedValuesList().iterator(); it.hasNext();) {
-
-            if (!it.hasNext()) {
-              
-                
+        double precio = 0;
+        List<String> listaIngredientes;
+        listaIngredientes = jListaIngredientes.getSelectedValuesList();
+        for (String s : listaIngredientes) {
+            if (s.equalsIgnoreCase("Jamón")) {
+                precio = precio + 0.50;
+            }
+            if (s.equalsIgnoreCase("Queso")) {
+                precio = precio + 0.75;
+            }
+            if (s.equalsIgnoreCase("Tomate")) {
+                precio = precio + 1.5;
+            }
+            if (s.equalsIgnoreCase("Cebolla")) {
+                precio = precio + 2.5;
+            }
+            if (s.equalsIgnoreCase("Olivas")) {
+                precio = precio + 1;
+            }
+            if (s.equalsIgnoreCase("ninguno")){
+                precioIngredienteExtra.setText("0€");
+                return precio=0;
                 
             }
         }
+        precioIngredienteExtra.setText(Double.toString(precio).concat("€"));
         return precio;
     }
 
     public double CalculaPrecioTamanio(Double precio) {
         if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
+            precioTamanio.setText("15%");
             return precio = precio + (precio * 15 / 100);
+            
         } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
+            precioTamanio.setText("30%");
             return precio = precio + (precio * 30 / 100);
-        } else {
+            
+        }  else
             return precio;
-        }
+        
     }
 
     public String CalculaPrecioTotal() {
         double precio;
-        precio = CalculaPrecioMasa() + CalculaPrecioTipoPizza();
+        precio = CalculaPrecioMasa() + CalculaPrecioTipoPizza()+ CalculaPrecioIngredientesExtra();
         precio = CalculaPrecioTamanio(precio);
         return Double.toString(precio).concat("€");
     }
@@ -447,10 +466,6 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JList jListaIngredientes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -459,7 +474,11 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnertam;
+    private javax.swing.JLabel pINGREDIENTESEXTRA;
     private javax.swing.JLabel pMASA;
+    private javax.swing.JLabel pTAMANO;
+    private javax.swing.JLabel pTIPOPIZZA;
+    private javax.swing.JLabel pTOTAL;
     private javax.swing.JLabel precioIngredienteExtra;
     private javax.swing.JLabel precioMasa;
     private javax.swing.JLabel precioTamanio;
