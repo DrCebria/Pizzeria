@@ -14,12 +14,12 @@ import java.util.List;
  *
  * @author daw1
  */
-public class PizzeriaInterfaz extends javax.swing.JFrame {
+public class Pizzeria1 extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public PizzeriaInterfaz() {
+    public Pizzeria1() {
         initComponents();
     }
 
@@ -166,6 +166,11 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jSpinnertam.setModel(new javax.swing.SpinnerListModel(new String[] {"Pequena", "Mediana", "Familiar"}));
+        jSpinnertam.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnertamStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -184,7 +189,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         pMASA.setText("MASA");
 
@@ -344,6 +349,10 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
         precioTotal.setText(CalculaPrecioTotal());
 
     }//GEN-LAST:event_BotonCalcularActionPerformed
+
+    private void jSpinnertamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnertamStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinnertamStateChanged
     public double CalculaPrecioMasa() {
         double precio = 0;
         if (rMasaIntegral.isSelected()) {
@@ -396,6 +405,7 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
             }
             if (s.equalsIgnoreCase("ninguno")){
                 precioIngredienteExtra.setText("0€");
+                
                 return precio=0;
                 
             }
@@ -439,21 +449,23 @@ public class PizzeriaInterfaz extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PizzeriaInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PizzeriaInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PizzeriaInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PizzeriaInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PizzeriaInterfaz().setVisible(true);
+                new Pizzeria1().setVisible(true);
             }
         });
     }
