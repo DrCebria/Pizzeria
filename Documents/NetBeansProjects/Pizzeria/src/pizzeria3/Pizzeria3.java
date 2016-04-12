@@ -7,9 +7,6 @@ package pizzeria3;
 
 import pizzeria2.*;
 import pizzeria.*;
-import java.util.ArrayList;
-import static java.util.Collections.list;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,13 +15,22 @@ import java.util.List;
  */
 public class Pizzeria3 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+    Pizza p;
+
     public Pizzeria3() {
         initComponents();
-      
-       
+        this.rMasaNormal.setActionCommand("Normal");
+        this.rMasaIntegral.setActionCommand("Integral");
+        this.cTipoPizza.setActionCommand("basica");
+
+        String masa = this.buttonGroup1.getSelection().getActionCommand();
+        String tipo = this.cTipoPizza.getActionCommand();
+        String tamanio = this.jSpinnertam.getValue().toString();
+        List listaIngredientes = jListaIngredientes.getSelectedValuesList();
+        p = new Pizza(masa, tipo, listaIngredientes, tamanio);
+
+        TextRecibo.setText(p.pedido());
+
     }
 
     /**
@@ -68,27 +74,12 @@ public class Pizzeria3 extends javax.swing.JFrame {
                 rMasaNormalItemStateChanged(evt);
             }
         });
-        rMasaNormal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rMasaNormalMouseClicked(evt);
-            }
-        });
-        rMasaNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMasaNormalActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(rMasaIntegral);
         rMasaIntegral.setText("Integral");
         rMasaIntegral.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rMasaIntegralItemStateChanged(evt);
-            }
-        });
-        rMasaIntegral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMasaIntegralActionPerformed(evt);
             }
         });
 
@@ -121,11 +112,6 @@ public class Pizzeria3 extends javax.swing.JFrame {
         cTipoPizza.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cTipoPizzaItemStateChanged(evt);
-            }
-        });
-        cTipoPizza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cTipoPizzaActionPerformed(evt);
             }
         });
 
@@ -195,7 +181,7 @@ public class Pizzeria3 extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSpinnertam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,12 +205,12 @@ public class Pizzeria3 extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         jLabel2.setText("Ingredientes Extra");
 
-        jLabel12.setText("Tama?o");
+        jLabel12.setText("Tamano");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -232,7 +218,7 @@ public class Pizzeria3 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,9 +234,9 @@ public class Pizzeria3 extends javax.swing.JFrame {
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,71 +254,56 @@ public class Pizzeria3 extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cTipoPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTipoPizzaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cTipoPizzaActionPerformed
-
-    private void rMasaNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaNormalActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_rMasaNormalActionPerformed
-
-    private void rMasaNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rMasaNormalMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rMasaNormalMouseClicked
-
-    private void rMasaIntegralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaIntegralActionPerformed
-
-    }//GEN-LAST:event_rMasaIntegralActionPerformed
-
-    private void rMasaNormalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaNormalItemStateChanged
-    
-    }//GEN-LAST:event_rMasaNormalItemStateChanged
-
     private void rMasaIntegralItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaIntegralItemStateChanged
-      
-
+        p.setMasa("Integral");
+        TextRecibo.setText(p.pedido());
     }//GEN-LAST:event_rMasaIntegralItemStateChanged
 
     private void cTipoPizzaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cTipoPizzaItemStateChanged
 
         if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("básica")) {
-            
+            p.setTipo("básica");
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
-           
+            p.setTipo("Cuatro Quesos");
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
-           
+            p.setTipo("Barbacoa");
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
-           
+            p.setTipo("Mexicana");
         }
 
+        TextRecibo.setText(p.pedido());
 
     }//GEN-LAST:event_cTipoPizzaItemStateChanged
 
     private void jListaIngredientesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListaIngredientesValueChanged
-      
+        p.setListaIngredientes(jListaIngredientes.getSelectedValuesList());
+        TextRecibo.setText(p.pedido());
 
     }//GEN-LAST:event_jListaIngredientesValueChanged
 
     private void jSpinnertamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnertamStateChanged
         if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
-          
+
         } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
-           
+
         }
-        
+        p.setTamanio(jSpinnertam.getValue().toString());
+        TextRecibo.setText(p.pedido());
 
     }//GEN-LAST:event_jSpinnertamStateChanged
 
-    
-   
+    private void rMasaNormalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaNormalItemStateChanged
+        p.setMasa("Normal");
+        TextRecibo.setText(p.pedido());
+    }//GEN-LAST:event_rMasaNormalItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

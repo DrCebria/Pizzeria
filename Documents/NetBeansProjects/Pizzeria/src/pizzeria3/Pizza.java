@@ -28,8 +28,12 @@ public class Pizza {
     private final double ITOMATE = 1.5;
     private final double ICEBOLLA = 2.5;
     private final double IOLIVAS = 1;
-    private final double TMEDIANA = 15 / 100;
-    private final double TFAMILIAR = 30 / 100;
+    private final double TMEDIANA = 1.15;
+    private final double TFAMILIAR = 1.30;
+    private double ptotal = 0;
+    private double pmasa = 0;
+    private double ptipo = 0;
+    private double pingrediente = 0;
 
     public Pizza(String masa, String tipo, List<String> listaIngredientes, String tamanio) {
         this.masa = masa;
@@ -70,20 +74,17 @@ public class Pizza {
         this.listaIngredientes = listaIngredientes;
     }
 
-//- método Double calcularPrecio() que en función de los valores de los atributos calcule y
-//devuelva el precio final de la pizza.
-    public double precioMasa() {
-        double pmasa = 0;
+    public double calcularPrecio() {
+        //Masa
+        pmasa=0;
         pmasa = MNORMAL;
 
         if (masa.equalsIgnoreCase("integral")) {
             pmasa = MINTEGRAL;
         }
-        return pmasa;
-    }
 
-    public double precioTipo() {
-        double ptipo = 0;
+        //Tipo
+        ptipo=0;
         if (tipo.equalsIgnoreCase("barbacoa")) {
             ptipo += TBARBACOA;
         } else if (tipo.equalsIgnoreCase("Cuatro Quesos")) {
@@ -93,15 +94,12 @@ public class Pizza {
         } else {
             ptipo += TBASICA;
         }
-        return ptipo;
-    }
-    //Implementar esto mejor, falta la suma total y cero si esta seleccionado ninguno.
 
-    public double precioIngredientes() {
-        double pingrediente = 0;
+        //Ingredientes
+        pingrediente=0;
         for (String s : listaIngredientes) {
             if (s.equalsIgnoreCase("ninguno")) {
-                return pingrediente = 0;
+                pingrediente = 0;
             } else {
                 if (s.equalsIgnoreCase("Tomate")) {
                     pingrediente += ITOMATE;
@@ -115,49 +113,31 @@ public class Pizza {
                 if (s.equalsIgnoreCase("Olivas")) {
                     pingrediente += IOLIVAS;
                 }
-                if (s.equalsIgnoreCase("Tomate")) {
+                if (s.equalsIgnoreCase("Jamón")) {
                     pingrediente += IJAMON;
                 }
             }
         }
-        return pingrediente;
-    }
 
-    public double precioTamanio() {
-        double ptamanio = 1;
-
+        //Tama?o
+                ptotal = (pmasa + ptipo + pingrediente);
         if (tamanio.equalsIgnoreCase("mediana")) {
-
-            return ptamanio = (precioMasa() + precioTipo() + precioIngredientes()) * 15 / 100;
-
+            ptotal = ptotal * TMEDIANA;
         } else if (tamanio.equalsIgnoreCase("familiar")) {
-
-            return ptamanio = (precioMasa() + precioTipo() + precioIngredientes()) * 30 / 100;
-
+            ptotal = ptotal * TFAMILIAR;
         }
-        return ptamanio;
-    }
 
-    public double calcularPrecio() {
-        double ptotal = 0;
-
-        ptotal = (precioMasa() + precioTipo() + precioIngredientes() + precioTamanio());
         return ptotal;
-
     }
-    /*- método String pedido() que crea en una cadena de texto la composición del pedido junto a los
-     precios parciales y el precio total.
-     Basándote en un objeto pizza creado en tu ventana, utiliza el método calcularPrecio() para obtener el
-     precio final y mostrarlo en pantalla. Cambia las etiquetas del pedido por un JTextArea donde volcarás lo
-     devuelto por pedido()
-     */
 
     public String pedido() {
-        return "Masa: " + masa + " " + precioMasa() + "€\n"
-                + "Tipo: " + tipo + " " + precioTipo() + "€\n"
-                + "Ingredientes: " + listaIngredientes.toString() + " " + precioIngredientes() + "€\n"
-                + "Tama?o: " + tamanio + " " + precioTamanio() + "€\n\n"
-                + "TOTAL: "+ calcularPrecio();
+        double total;
+        total=Math.rint(this.calcularPrecio()*100)/100;
+        return    "Masa: " + getMasa() + "\t\t\t" + pmasa + "€\n"
+                + "Tipo: " + getTipo() + "\t\t\t" + ptipo + "€\n"
+                + "Ingredientes extra: " + getListaIngredientes() + "\t\t" + pingrediente + "€\n"
+                + "Tamano: "+ "\t\t\t" +tamanio + "\n\n"
+                + "TOTAL: "+ "\t\t\t" + total + "€";
     }
 
 }
