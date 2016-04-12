@@ -23,9 +23,8 @@ public class Pizzeria3 extends javax.swing.JFrame {
      */
     public Pizzeria3() {
         initComponents();
-        precioMasa.setText("9.00€");
-        precioTipoPizza.setText("3.00€");
-        precioTotal.setText(CalculaPrecioTotal());
+      
+       
     }
 
     /**
@@ -294,120 +293,46 @@ public class Pizzeria3 extends javax.swing.JFrame {
     }//GEN-LAST:event_rMasaIntegralActionPerformed
 
     private void rMasaNormalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaNormalItemStateChanged
-        precioMasa.setText("9.00€");
-        precioTotal.setText(CalculaPrecioTotal());
+    
     }//GEN-LAST:event_rMasaNormalItemStateChanged
 
     private void rMasaIntegralItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaIntegralItemStateChanged
-        precioMasa.setText("9.50€");
-        precioTotal.setText(CalculaPrecioTotal());
+      
 
     }//GEN-LAST:event_rMasaIntegralItemStateChanged
 
     private void cTipoPizzaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cTipoPizzaItemStateChanged
 
         if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("básica")) {
-            precioTipoPizza.setText("3.00€");
+            
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
-            precioTipoPizza.setText("5.00€");
+           
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
-            precioTipoPizza.setText("7.00€");
+           
         } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
-            precioTipoPizza.setText("8.50€");
+           
         }
 
-        precioTotal.setText(CalculaPrecioTotal());
 
     }//GEN-LAST:event_cTipoPizzaItemStateChanged
 
     private void jListaIngredientesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListaIngredientesValueChanged
-        precioIngredienteExtra.setText(Double.toString(CalculaPrecioIngredientesExtra()).concat("€"));
-        precioTotal.setText(CalculaPrecioTotal());
+      
 
     }//GEN-LAST:event_jListaIngredientesValueChanged
 
     private void jSpinnertamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnertamStateChanged
         if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
-            precioTamanio.setText("15%");
+          
         } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
-            precioTamanio.setText("30%");
+           
         }
-        precioTotal.setText(CalculaPrecioTotal());
+        
 
     }//GEN-LAST:event_jSpinnertamStateChanged
-    public double CalculaPrecioMasa() {
-        double precio = 0;
-        if (rMasaIntegral.isSelected()) {
-            precio = 9.5;
-        } else {
-            precio = 9;
-        }
-        return precio;
-    }
 
-    public double CalculaPrecioTipoPizza() {
-        double precio = 3;
-        if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
-            precio += 5;
-        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
-            precio += 7;
-        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
-            precio += 8.5;
-        }
-        return precio;
-    }
-
-    public double CalculaPrecioIngredientesExtra() {
-        double precio = 0;
-        List<String> listaIngredientes;
-        listaIngredientes = jListaIngredientes.getSelectedValuesList();
-        for (String s : listaIngredientes) {
-            if (s.equalsIgnoreCase("Jamón")) {
-                precio = precio + 0.50;
-            }
-            if (s.equalsIgnoreCase("Queso")) {
-                precio = precio + 0.75;
-            }
-            if (s.equalsIgnoreCase("Tomate")) {
-                precio = precio + 1.5;
-            }
-            if (s.equalsIgnoreCase("Cebolla")) {
-                precio = precio + 2.5;
-            }
-            if (s.equalsIgnoreCase("Olivas")) {
-                precio = precio + 1;
-            }
-            if (s.equalsIgnoreCase("ninguno")) {
-             
-
-                return precio = 0;
-
-            }
-        }
-        return precio;
-    }
-
-    public double CalculaPrecioTamanio(Double precio) {
-        if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
-            
-            return precio = precio + (precio * 15 / 100);
-
-        } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
-            
-            return precio = precio + (precio * 30 / 100);
-
-        } else {
-            return precio;
-        }
-
-    }
-
-    public String CalculaPrecioTotal() {
-        double precio;
-        precio = CalculaPrecioMasa() + CalculaPrecioTipoPizza() + CalculaPrecioIngredientesExtra();
-        precio = CalculaPrecioTamanio(precio);
-        return Double.toString(precio).concat("€");
-    }
+    
+   
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
