@@ -4,45 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- Crea una clase Pizzaclass con:
+ Crea una clase Pizza con:
  - atributos: masa, tipo, tama?o y lista de ingredientes.
  - constantes (atributos private final ): uno por cada precio de los diferentes elementos
  - Define el constructor con los cuatro atributos.
  - métodos get/set correspondientes.
+*/
 
- - método String pedido() que crea en una cadena de texto la composición del pedido junto a los
- precios parciales y el precio total.
- Basándote en un objeto pizza creado en tu ventana, utiliza el método calcularPrecio() para obtener el
- precio final y mostrarlo en pantalla. Cambia las etiquetas del pedido por un JTextArea donde volcarás lo
- devuelto por pedido()
- */
-public class Pizzaclass {
+public class Pizza {
 
     private String masa;
     private String tipo;
     private String tamanio;
     private List<String> listaIngredientes;
 
-    private final double mNormal = 9.00;
-    private final double mIntegral = 9.5;
-    private final double tBasica = 3;
-    private final double tCuatroQuesos = 5;
-    private final double tBarbacoa = 7;
-    private final double tMexicana = 8.5;
-    private final double iJamon = 0.5;
-    private final double iQueso = 0.75;
-    private final double iTomate = 1.5;
-    private final double iCebolla = 2.5;
-    private final double iOlivas = 1;
-    private final double tMediana = 15 / 100;
-    private final double tFamiliar = 30 / 100;
+    private final double MNORMAL = 9.00;
+    private final double MINTEGRAL = 9.5;
+    private final double TBASICA = 3;
+    private final double TCUATROQUESOS = 5;
+    private final double TBARBACOA = 7;
+    private final double TMEXICANA = 8.5;
+    private final double IJAMON = 0.5;
+    private final double IQUESO = 0.75;
+    private final double ITOMATE = 1.5;
+    private final double ICEBOLLA = 2.5;
+    private final double IOLIVAS= 1;
+    private final double TMEDIANA = 15 / 100;
+    private final double TFAMILIAR = 30 / 100;
 
-    public Pizzaclass(String masa, String tipo,  List<String> listaIngredientes, String tamanio) {
+    public Pizza(String masa, String tipo,  List<String> listaIngredientes, String tamanio) {
         this.masa = masa;
         this.tipo = tipo;
         this.listaIngredientes = listaIngredientes;
         this.tamanio = tamanio;
-
     }
 
     public String getMasa() {
@@ -80,54 +74,69 @@ public class Pizzaclass {
 //- método Double calcularPrecio() que en función de los valores de los atributos calcule y
 //devuelva el precio final de la pizza.
     public double calcularPrecio() {
-        double precio = 0;
-         precio = mNormal;
+        double ptotal=0, pmasa = 0, ptipo=0, pingrediente=0;
+         pmasa = MNORMAL;
 
         if (masa.equalsIgnoreCase("integral")) {
-            precio = mIntegral;
+            pmasa = MINTEGRAL;
         }
-
         if (tipo.equalsIgnoreCase("barbacoa")) {
-            precio += tBarbacoa;
+            ptipo += TBARBACOA;
         } else if (tipo.equalsIgnoreCase("Cuatro Quesos")) {
-            precio += tCuatroQuesos;
+            ptipo += TCUATROQUESOS;
         } else if (tipo.equalsIgnoreCase("Mexicana")) {
-            precio += tMexicana;
+            ptipo += TMEXICANA;
         } else {
-            precio += tBasica;
+            ptipo += TBASICA;
         }
 
         //Implementar esto mejor, falta la suma total y cero si esta seleccionado ninguno.
         for (String s : listaIngredientes) {
             if (s.equalsIgnoreCase("ninguno")) {
-                precio += 0;
-            }
+                pingrediente = 0;
+            }else{
             if (s.equalsIgnoreCase("Tomate")) {
-                precio += iTomate;
+                pingrediente += ITOMATE;
             }
             if (s.equalsIgnoreCase("Queso")) {
-                precio += iQueso;
+                pingrediente += IQUESO;
             }
             if (s.equalsIgnoreCase("Cebolla")) {
-                precio += iCebolla;
+                pingrediente += ICEBOLLA;
             }
             if (s.equalsIgnoreCase("Olivas")) {
-                precio += iOlivas;
+                pingrediente += IOLIVAS;
             }
             if (s.equalsIgnoreCase("Tomate")) {
-                precio += iJamon;
+                pingrediente += IJAMON;
+            }
             }
         }
-        
+        ptotal = pmasa+ptipo+pingrediente ;
         if (tamanio.equalsIgnoreCase("mediana")) {
-            return precio = precio + (precio * 15 / 100);
+             
+            return ptotal= ptotal+(ptotal * 15 / 100) ;
             
         } else if (tamanio.equalsIgnoreCase("familiar")) {
-            return precio = precio + (precio * 30 / 100);
+            
+            return ptotal= ptotal+(ptotal * 15 / 100) ;
             
         }
         
-        return precio;
+        return ptotal;
     }
+ /*- método String pedido() que crea en una cadena de texto la composición del pedido junto a los
+ precios parciales y el precio total.
+ Basándote en un objeto pizza creado en tu ventana, utiliza el método calcularPrecio() para obtener el
+ precio final y mostrarlo en pantalla. Cambia las etiquetas del pedido por un JTextArea donde volcarás lo
+ devuelto por pedido()
+ */
+    public String pedido(){
+        return "Masa: "+masa+"\n"+
+                "Tipo: "+ tipo+"\n"+
+                "Ingredientes: "+listaIngredientes.toString()+"\n"+
+                "Tama?o: "+tamanio+"\n";    
+                }
+
 
 }
