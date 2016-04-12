@@ -5,6 +5,7 @@
  */
 package pizzeria3;
 
+import pizzeria2.*;
 import pizzeria.*;
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -22,8 +23,9 @@ public class Pizzeria3 extends javax.swing.JFrame {
      */
     public Pizzeria3() {
         initComponents();
-        this.rMasaNormal.setActionCommand("Normal");
-        this.rMasaIntegral.setActionCommand("Integral");
+        precioMasa.setText("9.00€");
+        precioTipoPizza.setText("3.00€");
+        precioTotal.setText(CalculaPrecioTotal());
     }
 
     /**
@@ -48,12 +50,11 @@ public class Pizzeria3 extends javax.swing.JFrame {
         jListaIngredientes = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
         jSpinnertam = new javax.swing.JSpinner();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TextRecibo = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        BotonCalcular = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TextoRecibo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
@@ -63,6 +64,11 @@ public class Pizzeria3 extends javax.swing.JFrame {
         buttonGroup1.add(rMasaNormal);
         rMasaNormal.setSelected(true);
         rMasaNormal.setText("Normal");
+        rMasaNormal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rMasaNormalItemStateChanged(evt);
+            }
+        });
         rMasaNormal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rMasaNormalMouseClicked(evt);
@@ -76,7 +82,11 @@ public class Pizzeria3 extends javax.swing.JFrame {
 
         buttonGroup1.add(rMasaIntegral);
         rMasaIntegral.setText("Integral");
-        rMasaIntegral.setActionCommand("integral");
+        rMasaIntegral.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rMasaIntegralItemStateChanged(evt);
+            }
+        });
         rMasaIntegral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rMasaIntegralActionPerformed(evt);
@@ -92,7 +102,7 @@ public class Pizzeria3 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rMasaIntegral)
                     .addComponent(rMasaNormal))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,6 +119,11 @@ public class Pizzeria3 extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         cTipoPizza.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Básica", "Cuatro Quesos", "Barbacoa", "Mexicana" }));
+        cTipoPizza.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cTipoPizzaItemStateChanged(evt);
+            }
+        });
         cTipoPizza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cTipoPizzaActionPerformed(evt);
@@ -141,6 +156,11 @@ public class Pizzeria3 extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jListaIngredientes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListaIngredientesValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListaIngredientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -156,8 +176,8 @@ public class Pizzeria3 extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -176,7 +196,7 @@ public class Pizzeria3 extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSpinnertam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,46 +206,36 @@ public class Pizzeria3 extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        TextRecibo.setColumns(20);
+        TextRecibo.setRows(5);
+        jScrollPane2.setViewportView(TextRecibo);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+        );
+
         jLabel2.setText("Ingredientes Extra");
 
         jLabel12.setText("Tama?o");
-
-        BotonCalcular.setText("Precio PIZZA");
-        BotonCalcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCalcularActionPerformed(evt);
-            }
-        });
-
-        TextoRecibo.setColumns(20);
-        TextoRecibo.setRows(5);
-        jScrollPane2.setViewportView(TextoRecibo);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Masa))
@@ -239,14 +249,8 @@ public class Pizzeria3 extends javax.swing.JFrame {
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(BotonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -260,16 +264,13 @@ public class Pizzeria3 extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addComponent(BotonCalcular)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,26 +293,121 @@ public class Pizzeria3 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rMasaIntegralActionPerformed
 
-    private void BotonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCalcularActionPerformed
-//       String masa, String tipo,  List<String> listaIngredientes, String tamanio
-        String masa = this.buttonGroup1.getSelection().getActionCommand();
+    private void rMasaNormalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaNormalItemStateChanged
+        precioMasa.setText("9.00€");
+        precioTotal.setText(CalculaPrecioTotal());
+    }//GEN-LAST:event_rMasaNormalItemStateChanged
 
-        String tipo = this.cTipoPizza.getSelectedItem().toString();
+    private void rMasaIntegralItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaIntegralItemStateChanged
+        precioMasa.setText("9.50€");
+        precioTotal.setText(CalculaPrecioTotal());
 
-        List<String> listaIngredientes = this.jListaIngredientes.getSelectedValuesList();
+    }//GEN-LAST:event_rMasaIntegralItemStateChanged
 
-        String tamanio = this.jSpinnertam.getValue().toString();
-        
-        Pizza p = new Pizza(masa, tipo, listaIngredientes, tamanio);
-        
-        System.out.println(p.pedido());
-        TextoRecibo.setText(p.pedido());
+    private void cTipoPizzaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cTipoPizzaItemStateChanged
 
-    }//GEN-LAST:event_BotonCalcularActionPerformed
+        if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("básica")) {
+            precioTipoPizza.setText("3.00€");
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
+            precioTipoPizza.setText("5.00€");
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
+            precioTipoPizza.setText("7.00€");
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
+            precioTipoPizza.setText("8.50€");
+        }
+
+        precioTotal.setText(CalculaPrecioTotal());
+
+    }//GEN-LAST:event_cTipoPizzaItemStateChanged
+
+    private void jListaIngredientesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListaIngredientesValueChanged
+        precioIngredienteExtra.setText(Double.toString(CalculaPrecioIngredientesExtra()).concat("€"));
+        precioTotal.setText(CalculaPrecioTotal());
+
+    }//GEN-LAST:event_jListaIngredientesValueChanged
 
     private void jSpinnertamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnertamStateChanged
-        // TODO add your handling code here:
+        if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
+            precioTamanio.setText("15%");
+        } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
+            precioTamanio.setText("30%");
+        }
+        precioTotal.setText(CalculaPrecioTotal());
+
     }//GEN-LAST:event_jSpinnertamStateChanged
+    public double CalculaPrecioMasa() {
+        double precio = 0;
+        if (rMasaIntegral.isSelected()) {
+            precio = 9.5;
+        } else {
+            precio = 9;
+        }
+        return precio;
+    }
+
+    public double CalculaPrecioTipoPizza() {
+        double precio = 3;
+        if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("Cuatro Quesos")) {
+            precio += 5;
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("barbacoa")) {
+            precio += 7;
+        } else if (cTipoPizza.getSelectedItem().toString().equalsIgnoreCase("mexicana")) {
+            precio += 8.5;
+        }
+        return precio;
+    }
+
+    public double CalculaPrecioIngredientesExtra() {
+        double precio = 0;
+        List<String> listaIngredientes;
+        listaIngredientes = jListaIngredientes.getSelectedValuesList();
+        for (String s : listaIngredientes) {
+            if (s.equalsIgnoreCase("Jamón")) {
+                precio = precio + 0.50;
+            }
+            if (s.equalsIgnoreCase("Queso")) {
+                precio = precio + 0.75;
+            }
+            if (s.equalsIgnoreCase("Tomate")) {
+                precio = precio + 1.5;
+            }
+            if (s.equalsIgnoreCase("Cebolla")) {
+                precio = precio + 2.5;
+            }
+            if (s.equalsIgnoreCase("Olivas")) {
+                precio = precio + 1;
+            }
+            if (s.equalsIgnoreCase("ninguno")) {
+             
+
+                return precio = 0;
+
+            }
+        }
+        return precio;
+    }
+
+    public double CalculaPrecioTamanio(Double precio) {
+        if (jSpinnertam.getValue().toString().equalsIgnoreCase("mediana")) {
+            
+            return precio = precio + (precio * 15 / 100);
+
+        } else if (jSpinnertam.getValue().toString().equalsIgnoreCase("familiar")) {
+            
+            return precio = precio + (precio * 30 / 100);
+
+        } else {
+            return precio;
+        }
+
+    }
+
+    public String CalculaPrecioTotal() {
+        double precio;
+        precio = CalculaPrecioMasa() + CalculaPrecioTipoPizza() + CalculaPrecioIngredientesExtra();
+        precio = CalculaPrecioTamanio(precio);
+        return Double.toString(precio).concat("€");
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -324,17 +420,30 @@ public class Pizzeria3 extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Pizzeria3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria3.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Pizzeria3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria3.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Pizzeria3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria3.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Pizzeria3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pizzeria3.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -353,9 +462,8 @@ public class Pizzeria3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCalcular;
     private javax.swing.JLabel Masa;
-    private javax.swing.JTextArea TextoRecibo;
+    private javax.swing.JTextArea TextRecibo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cTipoPizza;
     private javax.swing.JLabel jLabel1;
@@ -366,7 +474,7 @@ public class Pizzeria3 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinnertam;
