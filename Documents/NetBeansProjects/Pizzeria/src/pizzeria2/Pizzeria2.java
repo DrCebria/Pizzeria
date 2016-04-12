@@ -76,27 +76,12 @@ public class Pizzeria2 extends javax.swing.JFrame {
                 rMasaNormalItemStateChanged(evt);
             }
         });
-        rMasaNormal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rMasaNormalMouseClicked(evt);
-            }
-        });
-        rMasaNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMasaNormalActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(rMasaIntegral);
         rMasaIntegral.setText("Integral");
         rMasaIntegral.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rMasaIntegralItemStateChanged(evt);
-            }
-        });
-        rMasaIntegral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMasaIntegralActionPerformed(evt);
             }
         });
 
@@ -129,11 +114,6 @@ public class Pizzeria2 extends javax.swing.JFrame {
         cTipoPizza.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cTipoPizzaItemStateChanged(evt);
-            }
-        });
-        cTipoPizza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cTipoPizzaActionPerformed(evt);
             }
         });
 
@@ -286,7 +266,7 @@ public class Pizzeria2 extends javax.swing.JFrame {
 
         jLabel2.setText("Ingredientes Extra");
 
-        jLabel12.setText("Tama?o");
+        jLabel12.setText("Tamano");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,23 +317,6 @@ public class Pizzeria2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cTipoPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTipoPizzaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cTipoPizzaActionPerformed
-
-    private void rMasaNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaNormalActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_rMasaNormalActionPerformed
-
-    private void rMasaNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rMasaNormalMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rMasaNormalMouseClicked
-
-    private void rMasaIntegralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaIntegralActionPerformed
-
-    }//GEN-LAST:event_rMasaIntegralActionPerformed
 
     private void rMasaNormalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rMasaNormalItemStateChanged
         precioMasa.setText("9.00€");

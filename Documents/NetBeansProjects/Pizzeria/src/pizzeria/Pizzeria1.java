@@ -66,25 +66,11 @@ public class Pizzeria1 extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         buttonGroup1.add(rMasaNormal);
+        rMasaNormal.setSelected(true);
         rMasaNormal.setText("Normal");
-        rMasaNormal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rMasaNormalMouseClicked(evt);
-            }
-        });
-        rMasaNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMasaNormalActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(rMasaIntegral);
         rMasaIntegral.setText("Integral");
-        rMasaIntegral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMasaIntegralActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,11 +98,6 @@ public class Pizzeria1 extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         cTipoPizza.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Básica", "Cuatro Quesos", "Barbacoa", "Mexicana" }));
-        cTipoPizza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cTipoPizzaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,11 +147,6 @@ public class Pizzeria1 extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jSpinnertam.setModel(new javax.swing.SpinnerListModel(new String[] {"Pequena", "Mediana", "Familiar"}));
-        jSpinnertam.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinnertamStateChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -197,7 +173,7 @@ public class Pizzeria1 extends javax.swing.JFrame {
 
         pINGREDIENTESEXTRA.setText("INGREDIENTES EXTRA");
 
-        pTAMANO.setText("TAMA?O");
+        pTAMANO.setText("TAMANO");
 
         pTOTAL.setText("TOTAL");
 
@@ -262,7 +238,7 @@ public class Pizzeria1 extends javax.swing.JFrame {
 
         jLabel2.setText("Ingredientes Extra");
 
-        jLabel12.setText("Tama?o");
+        jLabel12.setText("Tamano");
 
         BotonCalcular.setText("Precio PIZZA");
         BotonCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -328,31 +304,10 @@ public class Pizzeria1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cTipoPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTipoPizzaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cTipoPizzaActionPerformed
-
-    private void rMasaNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaNormalActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_rMasaNormalActionPerformed
-
-    private void rMasaNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rMasaNormalMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rMasaNormalMouseClicked
-
-    private void rMasaIntegralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMasaIntegralActionPerformed
-
-    }//GEN-LAST:event_rMasaIntegralActionPerformed
-
     private void BotonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCalcularActionPerformed
         precioTotal.setText(CalculaPrecioTotal());
 
     }//GEN-LAST:event_BotonCalcularActionPerformed
-
-    private void jSpinnertamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnertamStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSpinnertamStateChanged
     public double CalculaPrecioMasa() {
         double precio = 0;
         if (rMasaIntegral.isSelected()) {
