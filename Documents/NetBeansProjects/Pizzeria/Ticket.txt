@@ -1,0 +1,6 @@
+Masa: Integral			9.5€
+Tipo: Cuatro Quesos			5.0€
+Ingredientes extra: [jamón, queso, tomate, cebolla]		5.25€
+Tamano: 			Pequena
+
+TOTAL: 			19.75€

@@ -1,5 +1,6 @@
-package pizzeria3;
+package pizzeria4;
 
+import pizzeria3.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -145,6 +146,18 @@ public class Pizza {
                 + "TOTAL: "+ "\t\t\t" + total + "€";
     }
     
-  
+    public boolean generarTicket(){
+        boolean resultado=true;
+        try (FileWriter f = new FileWriter("Ticket.txt");
+             PrintWriter pw = new PrintWriter(f)) {
+           
+            pw.println(pedido());
+           
+
+        } catch (IOException ex) {
+            resultado = false;     
+        }
+          return resultado;
+    }
 
 }
