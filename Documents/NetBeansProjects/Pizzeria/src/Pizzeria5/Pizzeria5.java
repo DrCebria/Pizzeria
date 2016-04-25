@@ -336,15 +336,7 @@ public class Pizzeria5 extends javax.swing.JFrame {
 
     private void BotonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTicketActionPerformed
 //"Ticket "+p.getId()+".txt"
-               try (FileWriter f = new FileWriter("Ticket "+p.getId()+".txt", true);
-             PrintWriter pw = new PrintWriter(f)) {
-            pw.println(p.pedido());
-            
-
-        } catch (IOException ex) {
-            System.out.println("Error al abrir el fichero");
-            // Si es necesario lanzamos excepción nivel superior      
-        }
+             p.generarTicket();
     
     }//GEN-LAST:event_BotonTicketActionPerformed
 

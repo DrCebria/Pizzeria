@@ -156,6 +156,18 @@ public class Pizza implements Serializable {
                 + "TOTAL: "+ "\t\t\t" + total + "€";
     }
     
+    public boolean generarTicket(){
+        boolean respuesta=true;
+          try (FileWriter f = new FileWriter("Ticket "+this.getId()+".txt", true);
+             PrintWriter pw = new PrintWriter(f)) {
+            pw.println(pedido());
+            
+
+        } catch (IOException ex) {
+            System.out.println("Error al abrir el fichero");
+        }
+          return respuesta;
+    }
   
 
 }
