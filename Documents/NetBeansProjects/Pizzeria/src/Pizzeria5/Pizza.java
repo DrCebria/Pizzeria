@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
+import javax.swing.JFileChooser;
 
 /*
  Crea una clase Pizza con:
@@ -41,22 +42,17 @@ public class Pizza implements Serializable {
     private double pmasa = 0;
     private double ptipo = 0;
     private double pingrediente = 0;
-    private int id;
-   
-    private static int numPizza=0;
+   private int id=0;
 
     public Pizza(String masa, String tipo, List<String> listaIngredientes, String tamanio) {
         this.masa = masa;
         this.tipo = tipo;
         this.listaIngredientes = listaIngredientes;
         this.tamanio = tamanio;
-        numPizza++;
-        id= numPizza;
+        
     }
 
-    public int getId() {
-        return id;
-    }
+   
 
     public String getMasa() {
         return masa;
@@ -158,16 +154,16 @@ public class Pizza implements Serializable {
     
     public boolean generarTicket(){
         boolean respuesta=true;
-          try (FileWriter f = new FileWriter("Ticket "+this.getId()+".txt", true);
+        id++;
+          try (FileWriter f = new FileWriter("Ticket "+Integer.toString(id)+".txt", true);
              PrintWriter pw = new PrintWriter(f)) {
-            pw.println(pedido());
+            pw.println(this.pedido());
             
 
         } catch (IOException ex) {
             System.out.println("Error al abrir el fichero");
         }
           return respuesta;
-    }
+    }}
   
-
-}
+    
